@@ -293,6 +293,8 @@
     state.lang = remote.lang === 'en' ? 'en' : 'zh'
     state.name = typeof remote.name === 'string' ? remote.name : ''
     pet.title = state.name
+    const mode = remote.mode === 'thinking' || remote.mode === 'working' ? remote.mode : 'idle'
+    if (figure.dataset.mode !== mode) figure.dataset.mode = mode
     if (typeof remote.size === 'number' && remote.size !== state.size) {
       state.size = remote.size
       applySize()

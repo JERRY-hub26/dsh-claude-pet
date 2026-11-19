@@ -148,6 +148,10 @@ overrides it).
   only starts when the window is actually wanted, i.e. when the app is minimised
   with the setting on — never at startup.
 
+  - **The desktop window mirrors her pose.** The page reports `mode` (`idle` / `thinking` /
+    `working`) with every `/report`, the host keeps it in the snapshot, and the window swaps
+    `#figure[data-mode]` — so the magnifier and the quill show up on the desktop too, not just
+    in the app.
 ## Layout facts this plugin relies on
 
 - `shell.overlay` is a list slot whose layer is `pointer-events: none`; every
