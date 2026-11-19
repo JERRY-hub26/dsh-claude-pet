@@ -17,6 +17,8 @@ A small companion for the DeepSeek Harness web UI. She blinks, holds a book, lif
 - **桌面浮窗**：主窗口最小化/隐藏时，桌面上单独显示一只宠物，可拖动、可右键、位置会记住；恢复窗口后自动收起。
 - **完全离线**：不接入任何聊天模型，不调用任何在线服务；台词与行为都是本地写死的（余额查询除外，见下）。
 
+![她会眨眼、会碎碎念，右键只有两项](docs/pet-demo.gif)
+
 ![她在桌面上说话](docs/screenshots/desktop-greeting.png)
 
 ![右键菜单只有两项](docs/screenshots/desktop-menu.png)
