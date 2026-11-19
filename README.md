@@ -1,6 +1,6 @@
 # dsh-claude-pet
 
-给 DeepSeek Harness 的网页界面加一只小宠物：她会眨眼、抱着一本书、在你思考时举起放大镜、在你让她干活时握着羽毛笔写字。把主窗口最小化之后，她还能留在桌面上。
+给 DeepSeek Harness 加一只克劳德桌宠：她会眨眼、抱着一本书、在你思考时举起放大镜、在你让她干活时握着羽毛笔写字。把主窗口最小化之后，她还能留在桌面上。
 
 A small companion for the DeepSeek Harness web UI. She blinks, holds a book, lifts a magnifier while you think, writes with a quill while the agent works — and can stay on your desktop after the window is minimised.
 
