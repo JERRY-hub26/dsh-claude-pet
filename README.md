@@ -72,11 +72,12 @@ git clone https://github.com/JERRY-hub26/dsh-claude-pet.git
 - 浮窗只在你**最小化或隐藏主窗口**时出现，主窗口一恢复就自动收起，避免两只宠物同屏。
 - 需要一个 Electron 可执行文件，按以下顺序查找：
   1. 环境变量 `DSH_CLAUDE_PET_ELECTRON`（指向 `electron.exe`）；
-  2. `%USERPROFILE%\.dsh\electron\electron.exe`（DSH 安装的其他插件通常会放在这里）；
+  2. `%USERPROFILE%\.dsh\electron\electron.exe`（DSH 安装的其他插件通常会放在这里，比如 dsh-pet）；
   3. macOS 下的 `Electron.app/Contents/MacOS/Electron`、Linux 下的 `electron`。
-
-  装过 [dsh-pet](https://github.com/awesome-dsh-plugin/awesome-dsh-plugin) 的话，第 2 项通常已经有了；否则把环境变量指向任意一个 `electron.exe` 也能用。
-- 找不到可执行文件时插件不会报错，只是不出现桌面浮窗，其余功能不受影响：日志里写一行 `no Electron found`，设置页的「桌面浮窗」开关会置灰并说明原因。
+- **没找到就自动下载一次**：第一次真正需要桌面浮窗时，插件会取官方 Electron 43.3.0（约 100 MB）解压到 `%USERPROFILE%\.dsh\electron`，之后一直复用。下载源依次是 `https://npmmirror.com/mirrors/electron/`、GitHub Releases；国内网络走第一个，通常几秒到一分钟。这个过程只发生一次，且只在你最小化窗口时触发，平时不会下载。
+- 下载期间设置页会显示「正在下载 Electron…」，装好后浮窗自动出现，不需要重启。
+- 如果机器在内网、或你想用自己的 Electron：把 `DSH_CLAUDE_PET_ELECTRON` 指向任意 `electron.exe` 即可完全跳过下载；也可以用 `DSH_CLAUDE_PET_ELECTRON_MIRROR` 换成自己的镜像目录；不想让它联网就设 `DSH_CLAUDE_PET_NO_DOWNLOAD=1`。
+- 下载失败（网络不通等）时插件不会报错，只是不出现桌面浮窗，其余功能不受影响：日志里写一行 `cannot install Electron: …`，设置页的「桌面浮窗」开关会置灰并说明原因。
 
 ## 隐私
 

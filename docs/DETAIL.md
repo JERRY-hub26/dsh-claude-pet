@@ -132,10 +132,21 @@ overrides it).
   `img-src 'self' data: file:`; without the explicit `file:` the sprites are
   blocked and the window looks empty.
 - **Missing Electron is a degraded mode, not an error.** `POST /report` answers
-  `{ok, electron}`, where `electron` is a fresh probe of the same lookup the spawn
-  uses; the settings switch is disabled and explains itself when it is `false`.
+  `{ok, electron, electronState}`, where `electron` is a fresh probe of the same
+  lookup the spawn uses and `electronState` says whether a download is under way.
+  The settings switch is disabled and explains itself when it is `false`.
   Probing per report (not once at startup) means installing Electron later starts
   working without an app restart.
+- **The missing runtime downloads itself, once.** `startHelper()` calls
+  `ensureElectron()`, which fetches the official Electron 43.3.0 zip into
+  `$DSH_HOME/electron` and unpacks it there — the same directory dsh-pet uses, so
+  a machine that already runs dsh-pet never downloads twice. Mirrors first
+  (`npmmirror`, then GitHub), any of them overridable with
+  `DSH_CLAUDE_PET_ELECTRON_MIRROR`; `DSH_CLAUDE_PET_NO_DOWNLOAD=1` turns it off.
+  Extraction shells out to `tar` (libarchive on Windows/macOS reads zip) and falls
+  back to `unzip` on Linux, which keeps the package dependency-free. The download
+  only starts when the window is actually wanted, i.e. when the app is minimised
+  with the setting on — never at startup.
 
 ## Layout facts this plugin relies on
 
