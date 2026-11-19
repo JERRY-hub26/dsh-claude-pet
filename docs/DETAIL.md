@@ -32,7 +32,7 @@ window*).
 - **Can be closed** with the × that appears on hover, or reopened from settings.
 - **Has a right-click menu** with exactly two entries: 碎碎念 (say something now)
   and 查看余额 (ask the provider for the current balance).
-- **Answers to a name you choose** — empty means the default, 小克 / Claudie.
+- **Answers to a name you choose** — empty means the default, Claude.
 - **Stays on the desktop when the app is minimised.** A separate transparent,
   always-on-top Electron window carries the same pet, bubble and menu, so she is
   still there once the DSH window has gone to the tray. See *Desktop window*.
