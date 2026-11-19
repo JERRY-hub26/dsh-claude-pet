@@ -1,0 +1,7 @@
+{
+  "meta": {
+    "title": "Claude pet",
+    "description": "A study companion who floats in the corner of the Web GUI: she holds a book and blinks while idle, raises a magnifier while the agent thinks, writes with a quill while it works, and occasionally says something. Draggable, resizable, and dockable to any corner.",
+    "detail": "docs/DETAIL.md"
+  }
+}
