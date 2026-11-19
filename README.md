@@ -17,39 +17,52 @@ A small companion for the DeepSeek Harness web UI. She blinks, holds a book, lif
 - **桌面浮窗**：主窗口最小化/隐藏时，桌面上单独显示一只宠物，可拖动、可右键、位置会记住；恢复窗口后自动收起。
 - **完全离线**：不接入任何聊天模型，不调用任何在线服务；台词与行为都是本地写死的（余额查询除外，见下）。
 
+![她在桌面上说话](docs/screenshots/desktop-greeting.png)
+
+![右键菜单只有两项](docs/screenshots/desktop-menu.png)
+
 ## 安装
 
-本插件没有发布到 npm，需要手动安装（三处改动，重启生效）。
+### 方式一：插件页（桌面版，推荐）
 
-1. 克隆仓库到任意目录：
+1. 在本页右上角 **Code → Download ZIP**，解压到一个固定目录（例如 `D:\dsh-claude-pet`）。
+2. 打开 DSH：**设置 → 插件 → 添加插件**，选择刚解压的目录。
+3. **完全退出** DSH 再启动。关窗口只会收进托盘，主进程还在跑，插件不会被重新加载 —— 请从托盘菜单退出。
 
-   ```bash
-   git clone https://github.com/JERRY-hub26/dsh-claude-pet.git
-   ```
+### 方式二：命令行（有 `dsh` 命令时最快）
 
-2. 打开你的 DSH 配置文件 `%USERPROFILE%\.dsh\profiles\desktop\package.json`（macOS / Linux 是 `~/.dsh/profiles/desktop/package.json`），改两处：
+```bash
+dsh plugin --profile desktop add github:JERRY-hub26/dsh-claude-pet
+```
 
-   ```json
-   {
-     "dependencies": {
-       "dsh-claude-pet": "link:C:/Users/<你的用户名>/dsh-claude-pet"
-     },
-     "dsh": {
-       "profile": {
-         "bundles": [
-           "...",
-           "dsh-claude-pet"
-         ]
-       }
-     }
-   }
-   ```
+想锁定版本就带上提交号：`github:JERRY-hub26/dsh-claude-pet#<commit>`。
 
-   路径用绝对路径，Windows 上建议用正斜杠。`bundles` 里把它放在最后即可。
+这个包是纯 JavaScript、零依赖、没有构建步骤，所以 git 安装不需要额外的 `allowBuilds` 授权，装完重启即可。
 
-3. **完全退出** DeepSeek Harness 再启动。关闭窗口只会收进托盘，主进程仍在跑，插件不会被重新加载 —— 必须从托盘菜单退出。
+### 方式三：手动改配置文件（以上都不行时）
 
-如果重启后没有出现，可在会话里执行 `window.__dshClaudePet()` 查看探针：`attached` 为 `true` 说明插件已挂上当前会话；`lastError` 会给出加载失败的原因。
+```bash
+git clone https://github.com/JERRY-hub26/dsh-claude-pet.git
+```
+
+打开 `%USERPROFILE%\.dsh\profiles\desktop\package.json`（macOS / Linux 是 `~/.dsh/profiles/desktop/package.json`），在 `dependencies` 里加绝对路径，并在 `dsh.profile.bundles` 末尾加上包名：
+
+```json
+{
+  "dependencies": {
+    "dsh-claude-pet": "link:D:/dsh-claude-pet"
+  },
+  "dsh": {
+    "profile": {
+      "bundles": ["...", "dsh-claude-pet"]
+    }
+  }
+}
+```
+
+### 装完没出现？
+
+在会话里执行 `window.__dshClaudePet()`：`attached` 为 `true` 说明已挂上当前会话，`lastError` 会给出失败原因。
 
 ## 桌面浮窗的说明与要求
 
