@@ -4,6 +4,8 @@
 
 A small companion for the DeepSeek Harness web UI. She blinks, holds a book, lifts a magnifier while you think, writes with a quill while the agent works — and can stay on your desktop after the window is minimised.
 
+![她会眨眼、会碎碎念，右键只有两项](docs/pet-demo.gif)
+
 ---
 
 ## 功能
@@ -16,8 +18,6 @@ A small companion for the DeepSeek Harness web UI. She blinks, holds a book, lif
 - **设置页**：在「设置 → 插件」里有一个独立页（名字、大小、停靠角、边距、在哪些界面上显示、桌面浮窗开关），全部是图形控件，不需要改配置文件。
 - **桌面浮窗**：主窗口最小化/隐藏时，桌面上单独显示一只宠物，可拖动、可右键、位置会记住；恢复窗口后自动收起。
 - **不需要模型**：不接入任何聊天模型、不需要 API Key；台词与行为都是本地写死的。全插件只有两处会碰网络：第一次用到桌面浮窗时下载一次 Electron（可关闭，见下），以及你主动点「查看余额」时查一次余额接口。
-
-![她会眨眼、会碎碎念，右键只有两项](docs/pet-demo.gif)
 
 ![她在桌面上说话](docs/screenshots/desktop-greeting.png)
 
