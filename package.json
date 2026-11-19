@@ -1,6 +1,6 @@
-{
+﻿{
   "name": "dsh-claude-pet",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "type": "module",
   "description": "A floating chibi study companion in the DSH Web GUI who blinks, watches you think, takes notes while the agent works, and stays on the desktop when the window is minimised.",
   "author": "JerryHui",

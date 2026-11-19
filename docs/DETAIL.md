@@ -131,6 +131,11 @@ overrides it).
 - **Assets in a `file://` page.** The CSP is `default-src 'none'` plus
   `img-src 'self' data: file:`; without the explicit `file:` the sprites are
   blocked and the window looks empty.
+- **Missing Electron is a degraded mode, not an error.** `POST /report` answers
+  `{ok, electron}`, where `electron` is a fresh probe of the same lookup the spawn
+  uses; the settings switch is disabled and explains itself when it is `false`.
+  Probing per report (not once at startup) means installing Electron later starts
+  working without an app restart.
 
 ## Layout facts this plugin relies on
 

@@ -74,7 +74,9 @@ git clone https://github.com/JERRY-hub26/dsh-claude-pet.git
   1. 环境变量 `DSH_CLAUDE_PET_ELECTRON`（指向 `electron.exe`）；
   2. `%USERPROFILE%\.dsh\electron\electron.exe`（DSH 安装的其他插件通常会放在这里）；
   3. macOS 下的 `Electron.app/Contents/MacOS/Electron`、Linux 下的 `electron`。
-- 找不到可执行文件时插件不会报错，只是不出现桌面浮窗，其余功能不受影响（日志里会写 `no Electron found`）。
+
+  装过 [dsh-pet](https://github.com/awesome-dsh-plugin/awesome-dsh-plugin) 的话，第 2 项通常已经有了；否则把环境变量指向任意一个 `electron.exe` 也能用。
+- 找不到可执行文件时插件不会报错，只是不出现桌面浮窗，其余功能不受影响：日志里写一行 `no Electron found`，设置页的「桌面浮窗」开关会置灰并说明原因。
 
 ## 隐私
 
