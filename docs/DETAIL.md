@@ -177,3 +177,23 @@ Every size in the stylesheet is expressed against `--dsh-cp-w` / `--dsh-cp-h`,
 so the size slider is a pure style change: nothing has to be re-measured, and
 the blinking frame offset (`calc(var(--dsh-cp-w) * -1)`) stays correct at any
 scale.
+
+## Touch and narrow screens
+
+The web UI is not desktop-only, so nothing here may assume a mouse. Four small
+rules cover it:
+
+- The two bottom corners add `env(safe-area-inset-bottom)` to the chosen
+  margin, so she stands above a phone's home indicator instead of behind it.
+- `@media (hover: none)` reveals the close button. It is a hover-only
+  affordance on a desktop, and a finger never hovers.
+- `frameStyle()` clamps the width to `min(<size>px, 34vw)`. A deliberate
+  200% on a 1920px monitor would cover the chat on a 390px screen; the clamp is
+  continuous, so nothing jumps while the window is resized.
+- A long press (550ms, 10px of slop for a resting finger) opens the same menu a
+  right click does, because iOS Safari does not dispatch `contextmenu` for a
+  plain `div`.
+
+Measured at 391x846: the default size is 31% of the width, 200% is capped at
+34%, the balloon still fits on one line, and `place()` keeps her off the
+composer in every case.
