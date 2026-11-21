@@ -197,3 +197,22 @@ rules cover it:
 Measured at 391x846: the default size is 31% of the width, 200% is capped at
 34%, the balloon still fits on one line, and `place()` keeps her off the
 composer in every case.
+## The routes are fenced by the Host
+
+`/dsh-claude-pet-api/*` is mounted with `ctx.webServer.register`, which is
+reachable from anything that can open a socket to the loopback port. A page the
+user happens to have open could therefore post to `/report` — and read the
+answer, which is the part that hurts.
+
+`handler()` asks `ctx.connection.requestRejection({ headers, method, url })`
+before it looks at the path and refuses on `401`/`403`. That call is the
+Host's own Host/Origin fence; the plugin neither re-implements it nor caches a
+verdict, because whether a credential is still valid is not something this
+plugin can know. Hosts without a connection service fall back to the same two
+header checks, and the route sets no `Access-Control-Allow-Origin`, so a
+cross-site `fetch` cannot read a response even if it could send one.
+
+`check-fence.mjs` in the workspace exercises both paths: same-origin served,
+cross-site `Origin` refused, foreign `Host` refused, preflight not
+advertised, and the delegation itself observed when a connection service is
+present.

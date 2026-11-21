@@ -84,6 +84,7 @@ git clone https://github.com/JERRY-hub26/dsh-claude-pet.git
 ## 隐私
 
 - 桌面浮窗与主程序之间的通信只走 `127.0.0.1` 上的随机端口，并带一次性随机 token，无外部监听。
+- 插件在主程序上开的那两条 HTTP 路由会先过 DSH 自己的访问检查（`ctx.connection.requestRejection`）：Host 必须是本机、`Origin` 必须同源，任何浏览器里打开的第三方网页调不到它们，也读不到返回内容。插件不设 `Access-Control-Allow-Origin`。
 - 插件不收集、不上传任何使用数据；没有遥测、没有崩溃上报。
 - 唯一的对外网络请求是**你主动点「查看余额」时**的余额查询：DeepSeek 官方 Key 会请求 `https://api.deepseek.com/user/balance`；`deepseek-account` 走本地账号服务。其他供应商不发请求，直接按规则显示「当前服务商暂不支持余额查询」。
 - 桌面浮窗会拉起一个 Electron 进程（仅限最小化期间），它只加载本仓库内的本地页面，不加载远程页面。
