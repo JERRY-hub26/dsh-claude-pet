@@ -216,3 +216,18 @@ cross-site `fetch` cannot read a response even if it could send one.
 cross-site `Origin` refused, foreign `Host` refused, preflight not
 advertised, and the delegation itself observed when a connection service is
 present.
+## Declared host range
+
+`package.json` carries `engines.dsh: "^0.2.0"`. The Host reads that range with
+`semver.satisfies(runtimeVersion, range, { includePrerelease: true })`, so the
+nightly channel (`0.2.2-rc.1` and later `0.2.x` prereleases) counts as inside
+the range, and `0.3.0` counts as outside it. The plugin is defensive about
+missing services rather than about versions: every optional service is read
+through `ctx.get(name, false)`, so a Host that lacks `connection`,
+`deepseekAccount` or `agentDefaultModel` degrades instead of throwing.
+
+The market card's "host requirement" line is not read from this repository. The
+list builds its index from the npm registry record of the published version:
+`scripts/probe-npm.mjs` requires the registry manifest's `repository` to point
+back at this repo, then copies `engines.dsh` from `latest`. Publishing is
+therefore what turns "not declared" into a range on the card.

@@ -68,6 +68,12 @@ git clone https://github.com/JERRY-hub26/dsh-claude-pet.git
 
 在会话里执行 `window.__dshClaudePet()`：`attached` 为 `true` 说明已挂上当前会话，`lastError` 会给出失败原因。
 
+## 兼容的 DSH 版本
+
+插件在 `package.json` 里声明了 `engines.dsh: "^0.2.0"` —— 也就是 **DSH 0.2.x**，夜间版（例如 `0.2.2-rc.1`）同样在范围内。DSH 会按这个范围判断能不能装，0.3.0 起需要先更新插件。
+
+想确认自己装的是哪一版：看设置里的「关于」，或者会话启动信息里的版本号。
+
 ## 桌面浮窗的说明与要求
 
 - 只在 **DSH 桌面版** 可用；纯 Web 环境（`http://127.0.0.1:端口`）没有桌面窗口。
