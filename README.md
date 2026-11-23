@@ -43,7 +43,21 @@ dsh plugin --profile desktop add github:JERRY-hub26/dsh-claude-pet
 
 这个包是纯 JavaScript、零依赖、没有构建步骤，所以 git 安装不需要额外的 `allowBuilds` 授权，装完重启即可。
 
-### 方式三：手动改配置文件（以上都不行时）
+### 方式三：npm（插件市场里点「安装」走的就是这条）
+
+```bash
+dsh plugin add dsh-claude-pet
+```
+
+国内网络下插件管理器默认走 `registry.npmmirror.com`。**刚发布的新版本，镜像常常还只缓存着旧版本**，这时会报 `ERR_PNPM_PACKAGE_NOT_FOUND`——不是包有问题，是镜像没同步。在浏览器打开 <https://npmmirror.com/package/dsh-claude-pet> 点「同步」，或者在任何能上网的终端执行：
+
+```bash
+curl -X PUT "https://registry.npmmirror.com/dsh-claude-pet/sync?sync_upstream=true"
+```
+
+等十几秒再装一次即可。急着用就改用方式二（git 安装），它不经过 npm 镜像。
+
+### 方式四：手动改配置文件（以上都不行时）
 
 ```bash
 git clone https://github.com/JERRY-hub26/dsh-claude-pet.git
